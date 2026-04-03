@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import KnittingShowcase from '@/components/KnittingShowcase.vue'
+import PatternLibrary from '@/components/PatternLibrary.vue'
 </script>
 
 <template>
-  <KnittingShowcase />
+  <PatternLibrary />
 </template>
