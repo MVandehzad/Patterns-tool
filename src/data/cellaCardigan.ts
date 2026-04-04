@@ -1,0 +1,215 @@
+import type { Pattern } from '@/types/pattern'
+
+const cellaCardigan: Pattern = {
+  id: 'cella-cardigan',
+  sku: '2422-254-4502',
+  name: 'Cella Cardigan',
+  craft: 'knitting',
+  category: 'cardigan',
+  difficulty: 'intermediate',
+  designer: 'JoJo Knitwear | Hobbii Design',
+  year: 2025,
+  sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
+  ease: 'Sizes S–L: 15–20 cm / 6–8" positive ease. Sizes XL–3XL: 15–25 cm / 6–9.75" positive ease. Model wears M with 18 cm ease.',
+  measurements: [
+    {
+      label: 'Chest circumference',
+      unitCm: ['105', '110', '115', '125', '135', '145'],
+      unitInch: ['41.25"', '43.25"', '45.25"', '49.25"', '53"', '57"'],
+    },
+    {
+      label: 'Length',
+      unitCm: ['54', '56', '58', '60', '62', '64'],
+      unitInch: ['21.25"', '22"', '22.75"', '23.5"', '24.5"', '25.25"'],
+    },
+  ],
+  materials: {
+    yarns: [
+      {
+        id: 'yarn-baby-alpaca-08',
+        brand: 'Copenhagen Fibers',
+        name: 'Baby Alpaca Blend',
+        colorCode: '08',
+        colorName: 'Taupe',
+        colorHex: '#C8B89A',
+        fiber: '50% Alpaca, 35% Cotton, 15% Wool',
+        weightGrams: 50,
+        weightOz: 1.75,
+        metersPerSkein: 110,
+        yardsPerSkein: 120,
+        quantitiesPerSize: [7, 7, 8, 9, 10, 11],
+      },
+    ],
+    tools: [
+      { name: 'Circular needle 5 mm (US 8) — 40 cm & 80–100 cm', icon: '🪡' },
+      { name: 'Circular needle 5.5 mm (US 9) — 40 cm & 80–100 cm', icon: '🪡' },
+      { name: 'Circular needle 9 mm (US 13) — for cable purl rows', icon: '🪡' },
+      { name: 'Cable needle', icon: '🪡' },
+      { name: '8 stitch markers', icon: '🔶' },
+      { name: 'Stitch wire (for holding sleeve sts)', icon: '🧵' },
+      { name: '6 (6) 6 (6) 7 (7) buttons, 20 mm / 0.8"', icon: '🔘' },
+    ],
+  },
+  gauge: {
+    stitches: 15,
+    rows: 26,
+    needleOrHook: '5.5 mm (US 9)',
+    stitch: 'Stockinette stitch',
+  },
+  abbreviations: [
+    { short: 'st(s)', full: 'Stitch(es)' },
+    { short: 'k', full: 'Knit' },
+    { short: 'p', full: 'Purl' },
+    { short: 'tbl', full: 'Through the back loop' },
+    { short: 'RS', full: 'Right side' },
+    { short: 'WS', full: 'Wrong side' },
+    { short: 'yo', full: 'Yarn over' },
+    { short: 'sl1k', full: 'Slip 1 stitch knitwise' },
+    { short: 'sl1p', full: 'Slip 1 stitch purlwise' },
+    { short: 'k2tog', full: 'Knit 2 stitches together (decrease)' },
+    { short: 'M1R', full: 'Increase slanting right: pick up bar from behind, knit it' },
+    { short: 'M1L', full: 'Increase slanting left: pick up bar from front, knit through back loop' },
+    { short: 'bo', full: 'Bind off' },
+    { short: 'wyif', full: 'With yarn in front' },
+    { short: 'psso', full: 'Pass slipped stitch over' },
+    { short: 'SM', full: 'Slip marker' },
+  ],
+  sections: [
+    {
+      id: 'neckline',
+      name: 'Neckline Ribbing',
+      description: 'Worked flat on 5 mm needles — twisted rib edging',
+      instructions: [
+        {
+          id: 'neck-co',
+          type: 'step',
+          label: 'Cast on',
+          text: 'Using 5 mm needles, CO 65 (69) 73 (73) 77 (81) sts. Row 1 (RS): K1 (edge st), *k1tbl, p1*, repeat to last 2 sts, k1tbl, sl1p wyif. Row 2 (WS): K1 (edge st), *p1tbl, k1*, repeat to last 2 sts, p1tbl, sl1p wyif. Repeat until ribbing measures ~3 cm / 1.25". End on a WS row.',
+        },
+      ],
+    },
+    {
+      id: 'yoke',
+      name: 'Yoke',
+      description: 'Top-down raglan worked flat — cable front panels on 5.5 mm (cable rows on 9 mm)',
+      instructions: [
+        {
+          id: 'yoke-increase',
+          type: 'step',
+          label: 'Increase row',
+          text: 'Change to 5.5 mm. On next RS row, increase 16 (18) 20 (24) 28 (32) sts evenly across. Place 8 markers dividing into: 11 (12) 13 (14) 16 (18) left front + 2 raglan + 13 (14) 15 (15) 15 (15) left sleeve + 2 raglan + 25 (27) 29 (31) 35 (39) back + 2 raglan + 13 (14) 15 (15) 15 (15) right sleeve + 2 raglan + 11 (12) 13 (14) 16 (18) right front.',
+        },
+        {
+          id: 'yoke-short-rows',
+          type: 'step',
+          label: 'Short rows (neck shaping)',
+          text: 'Work 3 German short row turns on each side to raise the back of the neck. On each RS short row, work raglan increases (M1R before marker, M1L after marker) across all 4 raglan positions. After 3 turns per side: 24 sts increased = 105 (111) 117 (121) 129 (137) sts total.',
+        },
+        {
+          id: 'yoke-note',
+          type: 'note',
+          text: 'German short row technique: turn work, slip 1 purlwise wyif, pull working yarn up and over the slipped st to create a double stitch. When you reach the double stitch again, work both legs as one.',
+        },
+        {
+          id: 'yoke-raglan',
+          type: 'step',
+          label: 'Continue raglan',
+          text: 'Work back and forth. On each RS row: work chart A across left front, M1R before each raglan pair, k2 raglan sts, M1L after each raglan pair, stockinette on sleeves and back, work chart B across right front. Cable rows 1, 5, 9, 13 use 9 mm needle for purl sts on front piece only.',
+        },
+        {
+          id: 'yoke-repeat',
+          type: 'step',
+          label: 'Total increases',
+          text: 'Work raglan increases every other row a total of 23 (23) 24 (26) 27 (28) times = 265 (271) 285 (305) 321 (337) total sts. Work even until piece measures 23 (25) 27 (29) 31 (33) cm / 9–13" from shoulder top.',
+        },
+      ],
+    },
+    {
+      id: 'body',
+      name: 'Body',
+      description: 'Flat with cable front panels — separate from sleeves',
+      instructions: [
+        {
+          id: 'body-divide',
+          type: 'step',
+          label: 'Divide for sleeves',
+          text: 'Work 36 (37) 39 (42) 45 (48) sts (left front + 2 raglan). Put 59 (60) 63 (67) 69 (71) sleeve sts on hold. CO 4 (6) 6 (7) 8 (10) underarm sts, place marker 1, work 75 (77) 81 (87) 93 (99) back sts. Put second sleeve on hold, place marker 2, CO 4 (6) 6 (7) 8 (10) sts, work 36 (37) 39 (42) 45 (48) sts. Total body: 155 (163) 171 (185) 199 (215) sts.',
+        },
+        {
+          id: 'body-continue',
+          type: 'step',
+          label: 'Work body',
+          text: 'Continue cable chart across both front pieces (chart expands to cover new sts below sleeves at markers 1 and 2). Back piece in stockinette. Work until piece measures approx. 50 (52) 54 (56) 58 (60) cm / ~20–23.5" from shoulder. End on WS Row 3, increasing 8 (8) 10 (10) 12 (12) sts evenly.',
+        },
+        {
+          id: 'body-ribbing',
+          type: 'step',
+          label: 'Hem ribbing',
+          text: 'Change to 5 mm. Work twisted rib (*k1tbl, p1*) for 4 cm / 1.5". Bind off as established.',
+        },
+      ],
+    },
+    {
+      id: 'sleeves',
+      name: 'Sleeves',
+      description: 'Worked in the round from armhole — make both',
+      instructions: [
+        {
+          id: 'sleeve-setup',
+          type: 'step',
+          label: 'Pick up sts',
+          text: 'Return 59 (60) 63 (67) 69 (71) sleeve sts to 5.5 mm needle. Pick up 2 (3) 3 (4) 4 (5) sts, PM (BOR), pick up 3 (4) 4 (4) 5 (5) sts. Total: 64 (67) 70 (75) 78 (82) sts.',
+        },
+        {
+          id: 'sleeve-dec',
+          type: 'round',
+          label: 'Underarm decreases',
+          text: 'When sleeve measures 2 (2) 3 (3) 4 (4) cm from division, work decrease round: sl1k, k1, psso, work in rib to 2 sts before marker, k2tog. Repeat every 5 (4.5) 4 (4) 4 (3.5) cm a total of 8 (8) 12 (12) 12 (12) times. Remaining: 48 (51) 52 (57) 60 (62) sts.',
+        },
+        {
+          id: 'sleeve-straight',
+          type: 'round',
+          label: 'Straight to cuff',
+          text: 'Work even in rib until sleeve measures 43 (42) 41 (41) 40 (40) cm from division. Decrease 0 (1) 0 (1) 2 (4) sts on last round.',
+        },
+        {
+          id: 'sleeve-cuff',
+          type: 'round',
+          label: 'Cuff ribbing',
+          text: 'Change to 5 mm. Work twisted rib (*k1tbl, p1*) for 4 cm / 1.5". Bind off as established.',
+        },
+      ],
+    },
+    {
+      id: 'front-bands',
+      name: 'Front Bands & Buttons',
+      description: 'Picked up after body is complete',
+      instructions: [
+        {
+          id: 'left-band',
+          type: 'step',
+          label: 'Left front band',
+          text: 'Pick up 91 (95) 97 (101) 105 (107) sts along left front edge (RS), starting at neck. Work 8 rows twisted rib. Bind off.',
+        },
+        {
+          id: 'right-band',
+          type: 'step',
+          label: 'Right front band (with buttonholes)',
+          text: 'Pick up 91 (95) 97 (101) 105 (107) sts along right front edge (RS), starting at hem. Work 3 rows rib, then Row 4 (buttonhole row): place 6 (6) 6 (6) 7 (7) evenly-spaced buttonholes using k2tog, yo. Work 4 more rows rib. Bind off.',
+        },
+        {
+          id: 'sew-buttons',
+          type: 'step',
+          label: 'Sew buttons',
+          text: 'Weave in all ends. Sew 20 mm buttons onto the left front band aligned with the buttonholes.',
+        },
+      ],
+    },
+  ],
+  hashtags: ['#jojoknitwearxhobbii', '#hobbiidesign', '#hobbiicella'],
+  buyUrl: 'https://shop.hobbii.com/cella-cardigan',
+  accentColor: '#8B5E8C',
+  coverDescription: 'A top-down raglan cardigan in a luxurious alpaca blend. Features beautiful cable panels on both front pieces with the rest in stockinette stitch. Raised neck shaping via German short rows. 6 sizes.',
+}
+
+export default cellaCardigan
