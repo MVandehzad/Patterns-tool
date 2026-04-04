@@ -248,7 +248,7 @@ const checkedCount = computed(() =>
 
 .spec-sep {
   font-size: 0.6rem;
-  color: #C8C0B8;
+  color: #A8D4DC;
 }
 
 .yarn-note {

@@ -45,7 +45,7 @@ const showAbbr = ref(false)
       <!-- Overall progress ring -->
       <div class="progress-wrap" :title="`${overall.done} / ${overall.total} steps done`">
         <svg width="32" height="32" viewBox="0 0 32 32">
-          <circle cx="16" cy="16" r="12" fill="none" stroke="#EAE4DC" stroke-width="3"/>
+          <circle cx="16" cy="16" r="12" fill="none" stroke="#C8EEF3" stroke-width="3"/>
           <circle
             cx="16" cy="16" r="12"
             fill="none"

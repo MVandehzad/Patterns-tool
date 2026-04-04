@@ -397,7 +397,7 @@ const typeColors: Record<string, string> = {
 .instruction-row.done .instr-label {
   opacity: 0.45;
   text-decoration: line-through;
-  text-decoration-color: #C8C0B8;
+  text-decoration-color: #A8D4DC;
 }
 
 /* Icon column */
@@ -412,7 +412,7 @@ const typeColors: Record<string, string> = {
 
 .type-icon {
   font-size: 0.75rem;
-  color: #C8C0B8;
+  color: #A8D4DC;
   line-height: 1;
 }
 
@@ -458,7 +458,7 @@ const typeColors: Record<string, string> = {
   font-style: italic;
   font-size: 0.78rem;
   background: #EBF9FB;
-  border-left: 3px solid #C8C0B8;
+  border-left: 3px solid #A8D4DC;
   padding: 0.35rem 0.6rem;
   border-radius: 0 6px 6px 0;
   margin: 0.1rem 0;

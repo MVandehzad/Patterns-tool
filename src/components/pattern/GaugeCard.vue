@@ -170,7 +170,7 @@ const ROWS = 10
 
 .gauge-x, .gauge-eq {
   font-size: 1.1rem;
-  color: #C8C0B8;
+  color: #A8D4DC;
   font-weight: 300;
 }
 
@@ -190,7 +190,7 @@ const ROWS = 10
   border-radius: 8px;
   padding: 0.65rem 0.8rem;
   font-size: 0.75rem;
-  color: #5A4200;
+  color: #3D6B75;
   line-height: 1.5;
 }
 

@@ -262,8 +262,8 @@ function showCount(seg: RowSegment): boolean {
   /* Knit: warm cream with subtle 45° diagonal (approximates V-stitch rhythm) */
   background: repeating-linear-gradient(
     135deg,
-    #F6F0E8 0px, #F6F0E8 4px,
-    #EDE5D6 4px, #EDE5D6 8px
+    #E4F7FA 0px, #E4F7FA 4px,
+    #C8EEF3 4px, #C8EEF3 8px
   );
 }
 
@@ -280,8 +280,8 @@ function showCount(seg: RowSegment): boolean {
   /* Slip: warm grey with 90° dashes */
   background: repeating-linear-gradient(
     90deg,
-    #E8E3DC 0px, #E8E3DC 6px,
-    #D8D0C8 6px, #D8D0C8 12px
+    #DCF0F5 0px, #DCF0F5 6px,
+    #B8D8E4 6px, #B8D8E4 12px
   );
 }
 
@@ -416,7 +416,7 @@ details[open] .rv-raw-toggle::before { content: '▾ '; }
 .rv-raw-text {
   margin-top: 0.4rem;
   font-size: 0.73rem;
-  color: #5A4F46;
+  color: #546E7A;
   line-height: 1.65;
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
   background: #E5F8FA;

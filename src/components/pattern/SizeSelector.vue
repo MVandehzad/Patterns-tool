@@ -171,6 +171,6 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 
 .measure-sep {
   font-size: 0.7rem;
-  color: #C8C0B8;
+  color: #A8D4DC;
 }
 </style>
