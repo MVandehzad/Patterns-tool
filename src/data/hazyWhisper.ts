@@ -1,4 +1,76 @@
-import type { Pattern } from '@/types/pattern'
+import type { Pattern, RowSegment } from '@/types/pattern'
+
+// Sleeve stitch counts are the same across all 4 rows — sizes 1-8
+const SLEEVE: number[] = [9, 9, 11, 11, 11, 11, 13, 13]
+
+// Row 7  RS · k · +4 sts
+// Sl1, k6, M1R, SM, k9(sizes), SM, M1L, k38(sizes), M1R, SM, k9(sizes), SM, M1L, k6, p1
+const row7Seg: RowSegment[] = [
+  { section: 'Left Edge',    stitch: 'sl', counts: [1,1,1,1,1,1,1,1] },
+  { section: 'Left Front',   stitch: 'k',  counts: [6,6,6,6,6,6,6,6],
+    suffix: { increase: 'M1R' } },
+  { section: 'Left Sleeve',  stitch: 'k',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Back',         stitch: 'k',  counts: [38,38,38,38,40,40,40,40],
+    prefix: { increase: 'M1L' }, suffix: { increase: 'M1R' } },
+  { section: 'Right Sleeve', stitch: 'k',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Right Front',  stitch: 'k',  counts: [6,6,6,6,6,6,6,6],
+    prefix: { increase: 'M1L' } },
+  { section: 'Right Edge',   stitch: 'p',  counts: [1,1,1,1,1,1,1,1] },
+]
+
+// Row 8  WS · p · +4 sts
+// Sl1, p7, M1LP, SM, p9(sizes), SM, M1RP, p40(sizes), M1LP, SM, p9(sizes), SM, M1RP, p8
+const row8Seg: RowSegment[] = [
+  { section: 'Left Edge',    stitch: 'sl', counts: [1,1,1,1,1,1,1,1] },
+  { section: 'Left Front',   stitch: 'p',  counts: [7,7,7,7,7,7,7,7],
+    suffix: { increase: 'M1LP' } },
+  { section: 'Left Sleeve',  stitch: 'p',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Back',         stitch: 'p',  counts: [40,40,40,40,42,42,42,42],
+    prefix: { increase: 'M1RP' }, suffix: { increase: 'M1LP' } },
+  { section: 'Right Sleeve', stitch: 'p',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Right Front',  stitch: 'p',  counts: [7,7,7,7,7,7,7,7],
+    prefix: { increase: 'M1RP' } },
+  { section: 'Right Edge',   stitch: 'p',  counts: [1,1,1,1,1,1,1,1] },
+]
+
+// Row 9  RS · k · +6 sts (double V-neck increases on both fronts)
+// Sl1, M1R, k8, M1R, SM, k9(sizes), SM, M1L, k42(sizes), M1R, SM, k9(sizes), SM, M1L, k8, M1L, p1
+const row9Seg: RowSegment[] = [
+  { section: 'Left Edge',    stitch: 'sl', counts: [1,1,1,1,1,1,1,1],
+    suffix: { increase: 'M1R' } },                          // first M1R before k8
+  { section: 'Left Front',   stitch: 'k',  counts: [8,8,8,8,8,8,8,8],
+    suffix: { increase: 'M1R' } },                          // second M1R before SM
+  { section: 'Left Sleeve',  stitch: 'k',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Back',         stitch: 'k',  counts: [42,42,42,42,44,44,44,44],
+    prefix: { increase: 'M1L' }, suffix: { increase: 'M1R' } },
+  { section: 'Right Sleeve', stitch: 'k',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Right Front',  stitch: 'k',  counts: [8,8,8,8,8,8,8,8],
+    prefix: { increase: 'M1L' }, suffix: { increase: 'M1L' } }, // M1L, then p1
+  { section: 'Right Edge',   stitch: 'p',  counts: [1,1,1,1,1,1,1,1] },
+]
+
+// Row 10  WS · p · +4 sts
+// Sl1, p10, M1LP, SM, p9(sizes), SM, M1RP, p44(sizes), M1LP, SM, p9(sizes), SM, M1RP, p11
+const row10Seg: RowSegment[] = [
+  { section: 'Left Edge',    stitch: 'sl', counts: [1,1,1,1,1,1,1,1] },
+  { section: 'Left Front',   stitch: 'p',  counts: [10,10,10,10,10,10,10,10],
+    suffix: { increase: 'M1LP' } },
+  { section: 'Left Sleeve',  stitch: 'p',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Back',         stitch: 'p',  counts: [44,44,44,44,46,46,46,46],
+    prefix: { increase: 'M1RP' }, suffix: { increase: 'M1LP' } },
+  { section: 'Right Sleeve', stitch: 'p',  counts: SLEEVE,
+    prefix: { marker: true }, suffix: { marker: true } },
+  { section: 'Right Front',  stitch: 'p',  counts: [10,10,10,10,10,10,10,10],
+    prefix: { increase: 'M1RP' } },
+  { section: 'Right Edge',   stitch: 'p',  counts: [1,1,1,1,1,1,1,1] },
+]
 
 const hazyWhisper: Pattern = {
   id: 'hazy-whisper-sweater',
@@ -120,10 +192,10 @@ const hazyWhisper: Pattern = {
         { id: 'yoke-row-4', type: 'row', label: 'Row 4 (increase)', text: 'Sl1, p2, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p32 (32) 32 (32) 34 (34) 34 (34), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p3. 4 sts increased.' },
         { id: 'yoke-row-5', type: 'row', label: 'Row 5 (increase)', text: 'Sl1, M1R, k3, M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k34 (34) 34 (34) 36 (36) 36 (36), M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k3, M1L, p1. 6 sts increased.' },
         { id: 'yoke-row-6', type: 'row', label: 'Row 6 (increase)', text: 'Sl1, p5, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p36 (36) 36 (36) 38 (38) 38 (38), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p6. 4 sts increased.' },
-        { id: 'yoke-row-7', type: 'row', label: 'Row 7 (increase)', text: 'Sl1, k6, M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k38 (38) 38 (38) 40 (40) 40 (40), M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k6, p1. 4 sts increased.' },
-        { id: 'yoke-row-8', type: 'row', label: 'Row 8 (increase)', text: 'Sl1, p7, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p40 (40) 40 (40) 42 (42) 42 (42), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p8. 4 sts increased.' },
-        { id: 'yoke-row-9', type: 'row', label: 'Row 9 (increase)', text: 'Sl1, M1R, k8, M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k42 (42) 42 (42) 44 (44) 44 (44), M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k8, M1L, p1. 6 sts increased.' },
-        { id: 'yoke-row-10', type: 'row', label: 'Row 10 (increase)', text: 'Sl1, p10, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p44 (44) 44 (44) 46 (46) 46 (46), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p11. 4 sts increased.' },
+        { id: 'yoke-row-7', type: 'row', label: 'Row 7 (increase)', text: 'Sl1, k6, M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k38 (38) 38 (38) 40 (40) 40 (40), M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k6, p1. 4 sts increased.', segments: row7Seg },
+        { id: 'yoke-row-8', type: 'row', label: 'Row 8 (increase)', text: 'Sl1, p7, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p40 (40) 40 (40) 42 (42) 42 (42), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p8. 4 sts increased.', segments: row8Seg },
+        { id: 'yoke-row-9', type: 'row', label: 'Row 9 (increase)', text: 'Sl1, M1R, k8, M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k42 (42) 42 (42) 44 (44) 44 (44), M1R, SM, k9 (9) 11 (11) 11 (11) 13 (13), SM, M1L, k8, M1L, p1. 6 sts increased.', segments: row9Seg },
+        { id: 'yoke-row-10', type: 'row', label: 'Row 10 (increase)', text: 'Sl1, p10, M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p44 (44) 44 (44) 46 (46) 46 (46), M1LP, SM, p9 (9) 11 (11) 11 (11) 13 (13), SM, M1RP, p11. 4 sts increased.', segments: row10Seg },
         { id: 'yoke-p1-cont', type: 'note', text: 'Continue in stockinette until 16 (18) 20 (22) 24 (26) 28 (30) rows have been worked from Row 1. Work M1L and M1R increases every row at Front and Back. Work V-neck increases every 4th row.' },
         { id: 'yoke-p1-dist', type: 'tip', text: 'After Yoke Part 1: Left front – 19 (22) 24 (27) 29 (32) 34 (37) sts | Left sleeve – 9 (9) 11 (11) 11 (11) 13 (13) sts | Back – 58 (62) 66 (70) 76 (80) 84 (88) sts | Right sleeve – 9 (9) 11 (11) 11 (11) 13 (13) sts | Right front – 19 (22) 24 (27) 29 (32) 34 (37) sts' },
         { id: 'yoke-p2-intro', type: 'note', text: 'Yoke Part 2 — Continue in stockinette until 38 (36) 36 (34) 34 (32) 32 (30) rows have been worked. In this section increases are NOT worked at Front and Back — only at Sleeves: SM, M1L, k sleeve sts, M1R, SM. Continue V-neck increases every 4th row until 15 (15) 15 (15) 16 (16) 16 (16) increases per front.' },

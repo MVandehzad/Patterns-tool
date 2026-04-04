@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import type { Pattern, PatternSection } from '@/types/pattern'
 import { usePatternProgressStore } from '@/stores/patternProgress'
+import RowVisualizer from './RowVisualizer.vue'
 
 const props = defineProps<{ pattern: Pattern }>()
 const store = usePatternProgressStore()
@@ -185,7 +186,18 @@ const typeColors: Record<string, string> = {
                   [{{ instruction.stitchCount }}]
                 </span>
               </div>
+              <!-- Row visualizer replaces plain text when structured data exists -->
+              <RowVisualizer
+                v-if="instruction.segments?.length"
+                :segments="instruction.segments"
+                :sizeIndex="store.getSelectedSizeIndex(pattern.id)"
+                :sizeLabel="`Size ${pattern.sizes[store.getSelectedSizeIndex(pattern.id)]}`"
+                :accentColor="pattern.accentColor"
+                :rawText="instruction.text"
+                @click.stop
+              />
               <p
+                v-else
                 class="instr-text"
                 :class="{
                   'text-note': instruction.type === 'note',
