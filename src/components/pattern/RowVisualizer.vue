@@ -224,19 +224,19 @@ function showCount(seg: RowSegment): boolean {
   text-transform: uppercase;
 }
 
-.badge.rs   { background: #E8EFF8; color: #4A7CC4; }
-.badge.ws   { background: #EEE8F5; color: #7A5AC4; }
-.badge.size { background: #F3F0EC; color: #7A6F66; }
+.badge.rs   { background: #E5F8FA; color: #00879A; }
+.badge.ws   { background: #EDE5F8; color: #6A4AC4; }
+.badge.size { background: #E5F8FA; color: #546E7A; }
 
 .total-count {
   font-size: 0.65rem;
-  color: #9A8F86;
+  color: #78909C;
   white-space: nowrap;
 }
 
 /* ── Track wrapper ───────────────────────────────────────────────────── */
 .rv-track-wrap {
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -341,8 +341,8 @@ function showCount(seg: RowSegment): boolean {
 .rv-labels {
   display: flex;
   align-items: stretch;
-  background: #FAF8F5;
-  border-top: 1px solid #EAE4DC;
+  background: #F0FBFC;
+  border-top: 1px solid #C8EEF3;
 }
 
 .rv-lbl {
@@ -351,7 +351,7 @@ function showCount(seg: RowSegment): boolean {
   justify-content: center;
   font-size: 0.56rem;
   font-weight: 600;
-  color: #7A6F66;
+  color: #546E7A;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   padding: 0.28rem 1px;
@@ -379,7 +379,7 @@ function showCount(seg: RowSegment): boolean {
   align-items: center;
   gap: 0.3rem;
   font-size: 0.65rem;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 .leg-swatch {
@@ -397,13 +397,13 @@ function showCount(seg: RowSegment): boolean {
 
 /* ── Raw text ────────────────────────────────────────────────────────── */
 .rv-raw {
-  border-top: 1px solid #EAE4DC;
+  border-top: 1px solid #C8EEF3;
   padding-top: 0.4rem;
 }
 
 .rv-raw-toggle {
   font-size: 0.68rem;
-  color: #9A8F86;
+  color: #78909C;
   cursor: pointer;
   list-style: none;
   user-select: none;
@@ -419,7 +419,7 @@ details[open] .rv-raw-toggle::before { content: '▾ '; }
   color: #5A4F46;
   line-height: 1.65;
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
-  background: #F3F0EC;
+  background: #E5F8FA;
   border-radius: 6px;
   padding: 0.6rem 0.75rem;
 }

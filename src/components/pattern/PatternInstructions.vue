@@ -47,7 +47,7 @@ function iconForType(type: string) {
 const typeColors: Record<string, string> = {
   round: '',
   row: '',
-  note: '#7A6F66',
+  note: '#546E7A',
   tip: '#5A7A9E',
   step: '',
   attention: '#C4694A',
@@ -86,7 +86,7 @@ const typeColors: Record<string, string> = {
         <div class="sh-left">
           <!-- Progress ring -->
           <svg width="28" height="28" viewBox="0 0 28 28" class="ring">
-            <circle cx="14" cy="14" r="10" fill="none" stroke="#EAE4DC" stroke-width="2.5"/>
+            <circle cx="14" cy="14" r="10" fill="none" stroke="#C8EEF3" stroke-width="2.5"/>
             <circle
               cx="14" cy="14" r="10"
               fill="none"
@@ -114,7 +114,7 @@ const typeColors: Record<string, string> = {
               dominant-baseline="central"
               font-size="7"
               font-weight="700"
-              fill="#2D2926"
+              fill="#121212"
             >{{ si + 1 }}</text>
           </svg>
 
@@ -134,7 +134,7 @@ const typeColors: Record<string, string> = {
             width="14" height="14" viewBox="0 0 14 14"
             fill="none"
           >
-            <path d="M3 5L7 9L11 5" stroke="#9A8F86" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 5L7 9L11 5" stroke="#78909C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </button>
@@ -249,7 +249,7 @@ const typeColors: Record<string, string> = {
 /* ── Overall bar ─────────────────────────────────────────────────── */
 .overall-bar-wrap {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 12px;
   padding: 0.9rem 1rem;
   display: flex;
@@ -266,19 +266,19 @@ const typeColors: Record<string, string> = {
 .overall-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .overall-pct {
   font-size: 0.72rem;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 .overall-track {
   height: 6px;
-  background: #EAE4DC;
+  background: #C8EEF3;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -293,7 +293,7 @@ const typeColors: Record<string, string> = {
 /* ── Section card ─────────────────────────────────────────────────── */
 .section {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   overflow: hidden;
   transition: border-color 0.15s;
@@ -317,7 +317,7 @@ const typeColors: Record<string, string> = {
   transition: background 0.15s;
 }
 
-.section-header:hover { background: #FAF8F5; }
+.section-header:hover { background: #F0FBFC; }
 
 .sh-left {
   display: flex;
@@ -339,13 +339,13 @@ const typeColors: Record<string, string> = {
 .sh-name {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   text-align: left;
 }
 
 .sh-sub {
   font-size: 0.72rem;
-  color: #7A6F66;
+  color: #546E7A;
   text-align: left;
   line-height: 1.4;
   overflow: hidden;
@@ -373,24 +373,24 @@ const typeColors: Record<string, string> = {
 
 /* ── Instruction list ─────────────────────────────────────────────── */
 .instruction-list {
-  border-top: 1px solid #F0EBE5;
+  border-top: 1px solid #E0F5F8;
 }
 
 .instruction-row {
   display: flex;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #F0EBE5;
+  border-bottom: 1px solid #E0F5F8;
   transition: background 0.12s;
 }
 
 .instruction-row:last-child { border-bottom: none; }
 
 .instruction-row.clickable { cursor: pointer; }
-.instruction-row.clickable:hover { background: #FAF8F5; }
+.instruction-row.clickable:hover { background: #F0FBFC; }
 
 .instruction-row.done {
-  background: #F8F5F0;
+  background: #EBF9FB;
 }
 
 .instruction-row.done .instr-text,
@@ -435,7 +435,7 @@ const typeColors: Record<string, string> = {
 .instr-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   font-family: 'SF Mono', 'Fira Code', monospace;
 }
 
@@ -449,15 +449,15 @@ const typeColors: Record<string, string> = {
 
 .instr-text {
   font-size: 0.82rem;
-  color: #2D2926;
+  color: #121212;
   line-height: 1.6;
 }
 
 .text-note {
-  color: #5A4F46;
+  color: #546E7A;
   font-style: italic;
   font-size: 0.78rem;
-  background: #F8F5F0;
+  background: #EBF9FB;
   border-left: 3px solid #C8C0B8;
   padding: 0.35rem 0.6rem;
   border-radius: 0 6px 6px 0;
@@ -465,20 +465,20 @@ const typeColors: Record<string, string> = {
 }
 
 .text-tip {
-  color: #2A4A7A;
+  color: #004080;
   font-size: 0.78rem;
-  background: #EEF4FB;
-  border-left: 3px solid #7AA8D4;
+  background: #E5F0FA;
+  border-left: 3px solid #4A8CC4;
   padding: 0.35rem 0.6rem;
   border-radius: 0 6px 6px 0;
   margin: 0.1rem 0;
 }
 
 .text-attention {
-  color: #7A2A1A;
+  color: #7A1030;
   font-size: 0.78rem;
-  background: #FBF0EC;
-  border-left: 3px solid #C4694A;
+  background: #FDE8F0;
+  border-left: 3px solid #EE276E;
   padding: 0.35rem 0.6rem;
   border-radius: 0 6px 6px 0;
   margin: 0.1rem 0;
@@ -513,19 +513,19 @@ const typeColors: Record<string, string> = {
 /* ── Reset ────────────────────────────────────────────────────────── */
 .reset-btn {
   background: none;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 10px;
   padding: 0.7rem;
   width: 100%;
   font-size: 0.78rem;
-  color: #9A8F86;
+  color: #78909C;
   cursor: pointer;
   font-family: inherit;
   transition: border-color 0.15s, color 0.15s;
 }
 
 .reset-btn:hover {
-  border-color: #C4694A;
-  color: #C4694A;
+  border-color: #B81050;
+  color: #B81050;
 }
 </style>

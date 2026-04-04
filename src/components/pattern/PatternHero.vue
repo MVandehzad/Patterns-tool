@@ -80,7 +80,7 @@ defineProps<{ pattern: Pattern }>()
 
 .hero {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -117,14 +117,14 @@ defineProps<{ pattern: Pattern }>()
   letter-spacing: 0.03em;
 }
 
-.craft-badge.knitting { background: #E8EFF8; color: #4A7CC4; }
-.craft-badge.crochet  { background: #FBF0EC; color: #C4694A; }
+.craft-badge.knitting { background: #E5F8FA; color: #00879A; }
+.craft-badge.crochet  { background: #FDE8F0; color: #B81050; }
 
 .year-badge {
   font-size: 0.68rem;
   font-weight: 500;
-  color: #9A8F86;
-  background: #F3F0EC;
+  color: #78909C;
+  background: #E5F8FA;
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
 }
@@ -132,14 +132,14 @@ defineProps<{ pattern: Pattern }>()
 .pattern-name {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.04em;
   line-height: 1.15;
 }
 
 .designer {
   font-size: 0.82rem;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 /* Stats row */
@@ -147,9 +147,9 @@ defineProps<{ pattern: Pattern }>()
   display: flex;
   align-items: stretch;
   gap: 0;
-  background: #FAF8F5;
+  background: #F0FBFC;
   border-radius: 10px;
-  border: 1px solid #EAE4DC;
+  border: 1px solid #C8EEF3;
   overflow: hidden;
   margin-top: 0.25rem;
 }
@@ -166,14 +166,14 @@ defineProps<{ pattern: Pattern }>()
 .stat-value {
   font-size: 1.1rem;
   font-weight: 800;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.62rem;
-  color: #7A6F66;
+  color: #546E7A;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -181,7 +181,7 @@ defineProps<{ pattern: Pattern }>()
 
 .stat-divider {
   width: 1px;
-  background: #EAE4DC;
+  background: #C8EEF3;
   align-self: stretch;
 }
 
@@ -195,7 +195,7 @@ defineProps<{ pattern: Pattern }>()
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #E0D8D0;
+  background: #C8EEF3;
 }
 
 .dot.filled { background: var(--accent); }
@@ -225,14 +225,14 @@ defineProps<{ pattern: Pattern }>()
 
 .palette-name {
   font-size: 0.8rem;
-  color: #2D2926;
+  color: #121212;
   font-weight: 500;
   flex: 1;
 }
 
 .palette-code {
   font-size: 0.7rem;
-  color: #9A8F86;
+  color: #78909C;
   font-family: 'SF Mono', 'Fira Code', monospace;
 }
 </style>

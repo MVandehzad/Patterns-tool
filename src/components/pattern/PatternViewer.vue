@@ -153,7 +153,7 @@ const showAbbr = ref(false)
 
 .viewer {
   min-height: 100vh;
-  background: #FAF8F5;
+  background: #F0FBFC;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   padding-bottom: 5rem;
@@ -164,9 +164,9 @@ const showAbbr = ref(false)
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.97);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid #EAE4DC;
+  border-bottom: 2px solid #00B9CD;
   display: flex;
   align-items: center;
   padding: 0 1rem;
@@ -179,8 +179,8 @@ const showAbbr = ref(false)
   align-items: center;
   gap: 0.3rem;
   font-size: 0.8rem;
-  font-weight: 500;
-  color: #7A6F66;
+  font-weight: 600;
+  color: #00B9CD;
   background: none;
   border: none;
   cursor: pointer;
@@ -190,7 +190,7 @@ const showAbbr = ref(false)
   transition: color 0.15s;
 }
 
-.back-btn:hover { color: #2D2926; }
+.back-btn:hover { color: #007F8C; }
 
 .topbar-center {
   flex: 1;
@@ -201,7 +201,7 @@ const showAbbr = ref(false)
 .topbar-name {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
@@ -223,14 +223,14 @@ const showAbbr = ref(false)
   justify-content: center;
   font-size: 0.48rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
 }
 
 /* ── Tabs ─────────────────────────────────────────────────────────── */
 .tabs {
   display: flex;
   background: #fff;
-  border-bottom: 1px solid #EAE4DC;
+  border-bottom: 1px solid #C8EEF3;
   padding: 0 1rem;
   gap: 0;
   position: sticky;
@@ -243,7 +243,7 @@ const showAbbr = ref(false)
   padding: 0.75rem 0;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #9A8F86;
+  color: #78909C;
   background: none;
   border: none;
   border-bottom: 2.5px solid transparent;
@@ -253,10 +253,10 @@ const showAbbr = ref(false)
   letter-spacing: 0.01em;
 }
 
-.tab:hover { color: #2D2926; }
+.tab:hover { color: #121212; }
 .tab.active {
-  color: #2D2926;
-  border-bottom-color: var(--accent);
+  color: #121212;
+  border-bottom-color: #EE276E;
 }
 
 /* ── Content panels ───────────────────────────────────────────────── */
@@ -275,7 +275,7 @@ const showAbbr = ref(false)
 /* ── Info card (construction) ─────────────────────────────────────── */
 .info-card {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   padding: 1.1rem;
   display: flex;
@@ -286,14 +286,14 @@ const showAbbr = ref(false)
 .info-title {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .info-text {
   font-size: 0.875rem;
-  color: #5A4F46;
+  color: #546E7A;
   line-height: 1.6;
 }
 
@@ -307,8 +307,8 @@ const showAbbr = ref(false)
 .tag {
   font-size: 0.72rem;
   font-weight: 500;
-  color: #7A6F66;
-  background: #F3F0EC;
+  color: #546E7A;
+  background: #E5F8FA;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
   text-transform: capitalize;
@@ -317,7 +317,7 @@ const showAbbr = ref(false)
 /* ── Sections overview ─────────────────────────────────────────────── */
 .sections-overview {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   padding: 1.1rem 0 0.5rem;
 }
@@ -327,7 +327,7 @@ const showAbbr = ref(false)
   align-items: center;
   gap: 0.65rem;
   padding: 0.65rem 1rem;
-  border-bottom: 1px solid #F0EBE5;
+  border-bottom: 1px solid #E0F5F8;
 }
 
 .section-chip:last-of-type { border-bottom: none; }
@@ -336,8 +336,8 @@ const showAbbr = ref(false)
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #F3F0EC;
-  color: #7A6F66;
+  background: #E5F8FA;
+  color: #00B9CD;
   font-size: 0.68rem;
   font-weight: 700;
   display: flex;
@@ -350,7 +350,7 @@ const showAbbr = ref(false)
   flex: 1;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #2D2926;
+  color: #121212;
 }
 
 .section-chip-pct {
@@ -361,7 +361,7 @@ const showAbbr = ref(false)
 .cta-btn {
   width: 100%;
   padding: 0.75rem;
-  background: var(--accent);
+  background: #EE276E;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -369,10 +369,11 @@ const showAbbr = ref(false)
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: opacity 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 2px 12px rgba(238, 39, 110, 0.28);
 }
 
-.cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.cta-btn:hover { background: #D21055; transform: translateY(-1px); }
 .cta-btn:active { transform: translateY(0); }
 
 /* ── ABC FAB ──────────────────────────────────────────────────────── */
@@ -383,19 +384,19 @@ const showAbbr = ref(false)
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #2D2926;
+  background: #00B9CD;
   color: #fff;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  box-shadow: 0 4px 16px rgba(0, 185, 205, 0.38);
   transition: transform 0.15s, background 0.15s;
   z-index: 30;
 }
 
-.abbr-fab:hover { background: #4A3F36; transform: scale(1.06); }
+.abbr-fab:hover { background: #007F8C; transform: scale(1.06); }
 
 .abbr-fab-label {
   font-size: 0.65rem;

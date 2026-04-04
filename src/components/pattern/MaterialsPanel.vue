@@ -115,7 +115,7 @@ const checkedCount = computed(() =>
 
 .section-block {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   padding: 1.1rem;
   display: flex;
@@ -132,15 +132,15 @@ const checkedCount = computed(() =>
 .section-title {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .check-progress {
   font-size: 0.72rem;
-  color: #7A6F66;
-  background: #F3F0EC;
+  color: #546E7A;
+  background: #E5F8FA;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
 }
@@ -157,7 +157,7 @@ const checkedCount = computed(() =>
   gap: 0.85rem;
   padding: 0.85rem;
   border-radius: 10px;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
   user-select: none;
@@ -166,7 +166,7 @@ const checkedCount = computed(() =>
 .yarn-card:hover { border-color: var(--accent); }
 
 .yarn-card.checked {
-  background: #F8F5F0;
+  background: #EBF9FB;
   border-color: var(--accent);
   opacity: 0.72;
 }
@@ -208,15 +208,15 @@ const checkedCount = computed(() =>
 .yarn-name {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
 }
 
 .qty-badge {
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent);
-  background: #FAF8F5;
-  border: 1px solid #EAE4DC;
+  background: #F0FBFC;
+  border: 1px solid #C8EEF3;
   padding: 0.15rem 0.45rem;
   border-radius: 999px;
   white-space: nowrap;
@@ -224,12 +224,12 @@ const checkedCount = computed(() =>
 
 .yarn-brand {
   font-size: 0.72rem;
-  color: #9A8F86;
+  color: #78909C;
 }
 
 .yarn-color-name {
   font-size: 0.75rem;
-  color: #5A4F46;
+  color: #546E7A;
   font-weight: 500;
 }
 
@@ -243,7 +243,7 @@ const checkedCount = computed(() =>
 
 .spec {
   font-size: 0.68rem;
-  color: #9A8F86;
+  color: #78909C;
 }
 
 .spec-sep {
@@ -253,7 +253,7 @@ const checkedCount = computed(() =>
 
 .yarn-note {
   font-size: 0.68rem;
-  color: #7A6F66;
+  color: #546E7A;
   font-style: italic;
   margin-top: 0.2rem;
 }
@@ -263,14 +263,17 @@ const checkedCount = computed(() =>
   text-align: center;
   padding: 0.7rem;
   border-radius: 10px;
-  background: var(--accent);
+  background: #EE276E;
   color: #fff;
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.15s;
+  transition: background 0.15s;
   margin-top: 0.25rem;
+  box-shadow: 0 2px 10px rgba(238, 39, 110, 0.25);
 }
+
+.buy-btn:hover { background: #D21055; }
 
 .buy-btn:hover { opacity: 0.88; }
 
@@ -286,7 +289,7 @@ const checkedCount = computed(() =>
   align-items: center;
   gap: 0.75rem;
   padding: 0.6rem 0;
-  border-bottom: 1px solid #F3F0EC;
+  border-bottom: 1px solid #E5F8FA;
 }
 
 .tool-row:last-child { border-bottom: none; }
@@ -300,6 +303,6 @@ const checkedCount = computed(() =>
 
 .tool-name {
   font-size: 0.82rem;
-  color: #2D2926;
+  color: #121212;
 }
 </style>

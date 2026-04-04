@@ -80,7 +80,7 @@ const filtered = computed(() => {
 .sheet-handle {
   width: 36px;
   height: 4px;
-  background: #DDD6CF;
+  background: #C8EEF3;
   border-radius: 2px;
   margin: 0.75rem auto 0;
   flex-shrink: 0;
@@ -97,7 +97,7 @@ const filtered = computed(() => {
 .sheet-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.01em;
 }
 
@@ -105,9 +105,9 @@ const filtered = computed(() => {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #F3F0EC;
+  background: #E5F8FA;
   border: none;
-  color: #7A6F66;
+  color: #546E7A;
   font-size: 0.7rem;
   cursor: pointer;
   display: flex;
@@ -117,7 +117,7 @@ const filtered = computed(() => {
   transition: background 0.15s;
 }
 
-.close-btn:hover { background: #EAE4DC; }
+.close-btn:hover { background: #C8EEF3; }
 
 .search-wrap {
   padding: 0.5rem 1.25rem;
@@ -127,17 +127,17 @@ const filtered = computed(() => {
 .search {
   width: 100%;
   padding: 0.6rem 0.85rem;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 10px;
   font-size: 0.82rem;
-  color: #2D2926;
+  color: #121212;
   font-family: inherit;
-  background: #FAF8F5;
+  background: #F0FBFC;
   outline: none;
   transition: border-color 0.15s;
 }
 
-.search:focus { border-color: #C4826E; }
+.search:focus { border-color: #00B9CD; }
 
 /* ── List ────────────────────────────────────────────────────────── */
 .abbr-list {
@@ -151,7 +151,7 @@ const filtered = computed(() => {
   align-items: baseline;
   gap: 0.75rem;
   padding: 0.6rem 1.25rem;
-  border-bottom: 1px solid #F0EBE5;
+  border-bottom: 1px solid #E0F5F8;
 }
 
 .abbr-row:last-child { border-bottom: none; }
@@ -159,14 +159,14 @@ const filtered = computed(() => {
 .abbr-short {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   min-width: 56px;
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
 }
 
 .abbr-full {
   font-size: 0.8rem;
-  color: #5A4F46;
+  color: #546E7A;
   line-height: 1.5;
   flex: 1;
 }
@@ -175,7 +175,7 @@ const filtered = computed(() => {
   padding: 2rem;
   text-align: center;
   font-size: 0.82rem;
-  color: #9A8F86;
+  color: #78909C;
 }
 
 /* ── Transitions ─────────────────────────────────────────────────── */

@@ -56,7 +56,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 
 .size-selector {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   padding: 1.1rem;
   display: flex;
@@ -74,7 +74,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 .section-title {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -83,7 +83,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent);
-  background: #FAF8F5;
+  background: #F0FBFC;
   border: 1.5px solid var(--accent);
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
@@ -101,9 +101,9 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
   height: 36px;
   padding: 0 0.6rem;
   border-radius: 8px;
-  border: 1.5px solid #EAE4DC;
-  background: #FAF8F5;
-  color: #5A4F46;
+  border: 1.5px solid #C8EEF3;
+  background: #F0FBFC;
+  color: #546E7A;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -121,7 +121,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 
 .ease-note {
   font-size: 0.72rem;
-  color: #7A6F66;
+  color: #546E7A;
   font-style: italic;
 }
 
@@ -130,7 +130,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  border: 1px solid #EAE4DC;
+  border: 1px solid #C8EEF3;
   overflow: hidden;
 }
 
@@ -139,7 +139,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
   align-items: center;
   justify-content: space-between;
   padding: 0.6rem 0.85rem;
-  border-bottom: 1px solid #F0EBE5;
+  border-bottom: 1px solid #E0F5F8;
   gap: 1rem;
 }
 
@@ -147,7 +147,7 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 
 .measure-label {
   font-size: 0.78rem;
-  color: #5A4F46;
+  color: #546E7A;
   flex: 1;
 }
 
@@ -160,13 +160,13 @@ const selectedSize = computed(() => props.pattern.sizes[selectedIdx.value])
 .measure-val {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
 }
 
 .measure-val.secondary {
   font-size: 0.78rem;
   font-weight: 500;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 .measure-sep {

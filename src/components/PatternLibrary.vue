@@ -130,11 +130,18 @@ function categoryLabel(c: Category): string {
 </template>
 
 <style scoped>
+/* ── Hobbii brand tokens ─────────────────────────────────────────────
+   Primary teal   #00B9CD   secondary pink  #EE276E
+   Dark text      #121212   mid text        #546E7A   muted   #78909C
+   Page bg        #F0FBFC   card bg         #FFFFFF
+   Border         #C8EEF3   divider         #E0F5F8
+   Chip bg        #E5F8FA
+   ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .library {
   min-height: 100vh;
-  background: #FAF8F5;
+  background: #F0FBFC;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   padding-bottom: 4rem;
@@ -143,7 +150,7 @@ function categoryLabel(c: Category): string {
 /* ── Header ──────────────────────────────────────────────────────── */
 .header {
   background: #fff;
-  border-bottom: 1px solid #EAE4DC;
+  border-bottom: 2px solid #00B9CD;
   padding: 2.5rem 1.5rem 2rem;
 }
 
@@ -161,27 +168,27 @@ function categoryLabel(c: Category): string {
 
 .logo-mark {
   font-size: 1.1rem;
-  color: #ee2770;
+  color: #EE276E;
 }
 
 .logo-name {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.03em;
 }
 
 .logo-sub {
   font-size: 0.75rem;
-  font-weight: 500;
-  color: #7A6F66;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: #00B9CD;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
 .tagline {
   font-size: 0.875rem;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 /* ── Filters ─────────────────────────────────────────────────────── */
@@ -197,9 +204,9 @@ function categoryLabel(c: Category): string {
 .chip {
   padding: 0.4rem 1rem;
   border-radius: 999px;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   background: #fff;
-  color: #7A6F66;
+  color: #546E7A;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
@@ -207,11 +214,11 @@ function categoryLabel(c: Category): string {
   font-family: inherit;
 }
 
-.chip:hover { border-color: #C4826E; color: #C4826E; }
+.chip:hover { border-color: #00B9CD; color: #00B9CD; }
 
 .chip.active {
-  background: #2D2926;
-  border-color: #2D2926;
+  background: #00B9CD;
+  border-color: #00B9CD;
   color: #fff;
 }
 
@@ -229,7 +236,7 @@ function categoryLabel(c: Category): string {
 .card {
   background: #fff;
   border-radius: 16px;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   cursor: pointer;
   transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
   overflow: hidden;
@@ -240,13 +247,13 @@ function categoryLabel(c: Category): string {
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.09);
-  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(0, 185, 205, 0.14);
+  border-color: #00B9CD;
 }
 
 .card-bar {
   height: 4px;
-  background: var(--accent);
+  background: var(--accent, #00B9CD);
   flex-shrink: 0;
 }
 
@@ -288,26 +295,26 @@ function categoryLabel(c: Category): string {
   border-radius: 999px;
 }
 
-.badge-craft.knitting { background: #E8EFF8; color: #4A7CC4; }
-.badge-craft.crochet  { background: #FBF0EC; color: #C4694A; }
-.badge-cat { background: #F3F0EC; color: #7A6F66; }
+.badge-craft.knitting { background: #E5F8FA; color: #00879A; }
+.badge-craft.crochet  { background: #FDE8F0; color: #B81050; }
+.badge-cat { background: #E5F8FA; color: #546E7A; }
 
 .card-name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
 
 .card-designer {
   font-size: 0.75rem;
-  color: #7A6F66;
+  color: #546E7A;
 }
 
 .card-desc {
   font-size: 0.8rem;
-  color: #9A8F86;
+  color: #78909C;
   line-height: 1.5;
   margin-top: 0.25rem;
   flex: 1;
@@ -319,7 +326,7 @@ function categoryLabel(c: Category): string {
   justify-content: space-between;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #F0EBE5;
+  border-top: 1px solid #E0F5F8;
 }
 
 .difficulty {
@@ -332,35 +339,35 @@ function categoryLabel(c: Category): string {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #E0D8D0;
+  background: #C8EEF3;
 }
 
-.dot.filled { background: var(--accent); }
+.dot.filled { background: var(--accent, #00B9CD); }
 
 .diff-label {
   font-size: 0.68rem;
-  color: #7A6F66;
+  color: #546E7A;
   text-transform: capitalize;
   margin-left: 0.15rem;
 }
 
 .sizes-label {
   font-size: 0.68rem;
-  color: #7A6F66;
-  background: #F3F0EC;
+  color: #546E7A;
+  background: #E5F8FA;
   padding: 0.15rem 0.45rem;
   border-radius: 999px;
 }
 
 .card-cta {
   padding: 0.65rem 1rem;
-  border-top: 1px solid #F0EBE5;
+  border-top: 1px solid #E0F5F8;
 }
 
 .open-btn {
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--accent);
+  color: #00B9CD;
   letter-spacing: 0.01em;
 }
 
@@ -368,7 +375,7 @@ function categoryLabel(c: Category): string {
 .empty {
   text-align: center;
   padding: 4rem;
-  color: #9A8F86;
+  color: #78909C;
   font-size: 0.875rem;
 }
 </style>

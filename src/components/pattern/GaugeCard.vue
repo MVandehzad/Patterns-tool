@@ -76,7 +76,7 @@ const ROWS = 10
 
 .gauge-card {
   background: #fff;
-  border: 1.5px solid #EAE4DC;
+  border: 1.5px solid #C8EEF3;
   border-radius: 14px;
   padding: 1.1rem;
   display: flex;
@@ -94,7 +94,7 @@ const ROWS = 10
 .section-title {
   font-size: 0.78rem;
   font-weight: 700;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -103,8 +103,8 @@ const ROWS = 10
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent);
-  background: #FAF8F5;
-  border: 1.5px solid #EAE4DC;
+  background: #F0FBFC;
+  border: 1.5px solid #C8EEF3;
   padding: 0.18rem 0.5rem;
   border-radius: 999px;
 }
@@ -127,7 +127,7 @@ const ROWS = 10
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #EAE4DC;
+  background: #C8EEF3;
   transition: background 0.08s, transform 0.08s;
 }
 
@@ -155,14 +155,14 @@ const ROWS = 10
 .num {
   font-size: 1.35rem;
   font-weight: 800;
-  color: #2D2926;
+  color: #121212;
   letter-spacing: -0.03em;
   line-height: 1;
 }
 
 .lbl {
   font-size: 0.62rem;
-  color: #7A6F66;
+  color: #546E7A;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -177,7 +177,7 @@ const ROWS = 10
 .gauge-stitch {
   text-align: center;
   font-size: 0.78rem;
-  color: #7A6F66;
+  color: #546E7A;
   font-style: italic;
 }
 
@@ -185,12 +185,12 @@ const ROWS = 10
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  background: #FBF5EE;
-  border: 1px solid #EDD8B8;
+  background: #FFF8E5;
+  border: 1px solid #F5D98A;
   border-radius: 8px;
   padding: 0.65rem 0.8rem;
   font-size: 0.75rem;
-  color: #7A5A2A;
+  color: #5A4200;
   line-height: 1.5;
 }
 
