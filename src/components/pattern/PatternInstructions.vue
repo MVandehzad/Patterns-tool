@@ -3,6 +3,8 @@ import { ref, computed } from 'vue'
 import type { Pattern, PatternSection } from '@/types/pattern'
 import { usePatternProgressStore } from '@/stores/patternProgress'
 import RowVisualizer from './RowVisualizer.vue'
+import SmartRowVisual from './SmartRowVisual.vue'
+import { extractFinalCount } from '@/utils/instructionParsing'
 
 const props = defineProps<{ pattern: Pattern }>()
 const store = usePatternProgressStore()
@@ -51,6 +53,27 @@ const typeColors: Record<string, string> = {
   tip: '#5A7A9E',
   step: '',
   attention: '#C4694A',
+}
+
+/** Highest stitch count found in a section — used to scale count bars */
+function sectionMaxCount(section: PatternSection): number {
+  const counts = section.instructions
+    .map((i) => i.stitchCount ?? extractFinalCount(i.text))
+    .filter((n): n is number => n != null && n > 0)
+  return counts.length ? Math.max(...counts) : 0
+}
+
+/**
+ * Stitch count of the closest preceding instruction (in the same section)
+ * that had a known count. Used to compute deltas for count bars.
+ */
+function prevCountFor(section: PatternSection, idx: number): number | undefined {
+  for (let i = idx - 1; i >= 0; i--) {
+    const instr = section.instructions[i]
+    const c = instr.stitchCount ?? extractFinalCount(instr.text)
+    if (c != null) return c
+  }
+  return undefined
 }
 </script>
 
@@ -143,7 +166,7 @@ const typeColors: Record<string, string> = {
       <Transition name="accordion">
         <div v-if="openSections.has(section.id)" class="instruction-list">
           <div
-            v-for="instruction in section.instructions"
+            v-for="(instruction, instrIdx) in section.instructions"
             :key="instruction.id"
             class="instruction-row"
             :class="{
@@ -186,7 +209,7 @@ const typeColors: Record<string, string> = {
                   [{{ instruction.stitchCount }}]
                 </span>
               </div>
-              <!-- Row visualizer replaces plain text when structured data exists -->
+              <!-- Row visualizer — uses manually crafted segment data (Hazy Whisper) -->
               <RowVisualizer
                 v-if="instruction.segments?.length"
                 :segments="instruction.segments"
@@ -196,8 +219,18 @@ const typeColors: Record<string, string> = {
                 :rawText="instruction.text"
                 @click.stop
               />
+
+              <!-- Smart visual — auto-parsed for all other row/round/step instructions -->
+              <SmartRowVisual
+                v-else-if="instruction.type === 'row' || instruction.type === 'round' || instruction.type === 'step'"
+                :instruction="instruction"
+                :craft="pattern.craft"
+                :prevCount="prevCountFor(section, instrIdx)"
+                :maxCount="sectionMaxCount(section)"
+                @click.stop
+              />
+
               <p
-                v-else
                 class="instr-text"
                 :class="{
                   'text-note': instruction.type === 'note',
