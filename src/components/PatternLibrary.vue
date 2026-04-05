@@ -32,7 +32,7 @@ function categoryLabel(c: Category): string {
     wrap: 'Wrap',
     beret: 'Beret',
     bandana: 'Bandana',
-    toy: 'Crochet Toy',
+    toy: 'Toy',
   }
   return map[c] ?? c
 }
@@ -74,25 +74,51 @@ function categoryLabel(c: Category): string {
         :style="{ '--accent': pattern.accentColor }"
         @click="router.push(`/pattern/${pattern.id}`)"
       >
-        <!-- Colored top bar -->
-        <div class="card-bar" />
-
-        <!-- Yarn swatches -->
-        <div class="swatches">
-          <span
-            v-for="yarn in pattern.materials.yarns.slice(0, 4)"
-            :key="yarn.id"
-            class="swatch"
-            :style="{ background: yarn.colorHex }"
-            :title="yarn.colorName"
+        <!-- ── Image hero ── -->
+        <div class="card-image">
+          <img
+            v-if="pattern.coverImage"
+            :src="pattern.coverImage"
+            :alt="pattern.name"
+            class="card-img"
+            loading="lazy"
           />
+          <!-- Fallback gradient when no image -->
+          <div v-else class="card-img-fallback" />
+
+          <!-- Gradient scrim -->
+          <div class="card-scrim" />
+
+          <!-- Category pill on image -->
+          <span class="img-category">{{ categoryLabel(pattern.category) }}</span>
+
+          <!-- Yarn color dots bottom-left of image -->
+          <div class="img-swatches">
+            <span
+              v-for="yarn in pattern.materials.yarns.slice(0, 5)"
+              :key="yarn.id"
+              class="img-swatch"
+              :style="{ background: yarn.colorHex }"
+              :title="yarn.colorName"
+            />
+          </div>
+
+          <!-- Photo count badge (top-right) if images exist -->
+          <span v-if="pattern.images?.length" class="img-photo-count">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            {{ pattern.images.length }}
+          </span>
         </div>
 
-        <!-- Card content -->
+        <!-- ── Card body ── -->
         <div class="card-body">
           <div class="card-meta">
             <span class="badge-craft" :class="pattern.craft">{{ craftLabel(pattern.craft) }}</span>
-            <span class="badge-cat">{{ categoryLabel(pattern.category) }}</span>
+            <span v-if="pattern.sizes.length > 1" class="badge-sizes">
+              {{ pattern.sizes.length }} sizes
+            </span>
           </div>
 
           <h2 class="card-name">{{ pattern.name }}</h2>
@@ -100,7 +126,7 @@ function categoryLabel(c: Category): string {
           <p class="card-desc">{{ pattern.coverDescription }}</p>
 
           <div class="card-footer">
-            <span class="difficulty" :title="`${pattern.difficulty}`">
+            <span class="difficulty">
               <span
                 v-for="n in 3"
                 :key="n"
@@ -109,34 +135,20 @@ function categoryLabel(c: Category): string {
               />
               <span class="diff-label">{{ pattern.difficulty }}</span>
             </span>
-            <span class="sizes-label" v-if="pattern.sizes.length > 1">
-              {{ pattern.sizes.length }} sizes
-            </span>
+            <span class="open-link">Open →</span>
           </div>
-        </div>
-
-        <!-- Open button -->
-        <div class="card-cta">
-          <span class="open-btn">Open Pattern →</span>
         </div>
       </article>
     </div>
 
     <!-- ── Empty state ─────────────────────────────────────────────── -->
     <div v-if="filtered.length === 0" class="empty">
-      <span>No patterns in this category yet.</span>
+      No patterns in this category yet.
     </div>
   </div>
 </template>
 
 <style scoped>
-/* ── Hobbii brand tokens ─────────────────────────────────────────────
-   Primary teal   #00B9CD   secondary pink  #EE276E
-   Dark text      #121212   mid text        #546E7A   muted   #78909C
-   Page bg        #F0FBFC   card bg         #FFFFFF
-   Border         #C8EEF3   divider         #E0F5F8
-   Chip bg        #E5F8FA
-   ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .library {
@@ -154,10 +166,7 @@ function categoryLabel(c: Category): string {
   padding: 2.5rem 1.5rem 2rem;
 }
 
-.header-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
+.header-inner { max-width: 960px; margin: 0 auto; }
 
 .logo {
   display: flex;
@@ -166,43 +175,23 @@ function categoryLabel(c: Category): string {
   margin-bottom: 0.5rem;
 }
 
-.logo-mark {
-  font-size: 1.1rem;
-  color: #EE276E;
-}
-
-.logo-name {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #121212;
-  letter-spacing: -0.03em;
-}
-
-.logo-sub {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #00B9CD;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.tagline {
-  font-size: 0.875rem;
-  color: #546E7A;
-}
+.logo-mark { font-size: 1.1rem; color: #EE276E; }
+.logo-name { font-size: 1.4rem; font-weight: 800; color: #121212; letter-spacing: -0.03em; }
+.logo-sub  { font-size: 0.75rem; font-weight: 600; color: #00B9CD; letter-spacing: 0.09em; text-transform: uppercase; }
+.tagline   { font-size: 0.875rem; color: #546E7A; }
 
 /* ── Filters ─────────────────────────────────────────────────────── */
 .filter-bar {
   display: flex;
   gap: 0.5rem;
   padding: 1.25rem 1.5rem;
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   flex-wrap: wrap;
 }
 
 .chip {
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 1.1rem;
   border-radius: 999px;
   border: 1.5px solid #C8EEF3;
   background: #fff;
@@ -215,19 +204,14 @@ function categoryLabel(c: Category): string {
 }
 
 .chip:hover { border-color: #00B9CD; color: #00B9CD; }
-
-.chip.active {
-  background: #00B9CD;
-  border-color: #00B9CD;
-  color: #fff;
-}
+.chip.active { background: #00B9CD; border-color: #00B9CD; color: #fff; }
 
 /* ── Grid ────────────────────────────────────────────────────────── */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -235,104 +219,202 @@ function categoryLabel(c: Category): string {
 /* ── Card ────────────────────────────────────────────────────────── */
 .card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1.5px solid #C8EEF3;
   cursor: pointer;
-  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(0, 185, 205, 0.14);
-  border-color: #00B9CD;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 185, 205, 0.16);
+  border-color: rgba(0, 185, 205, 0.5);
 }
 
-.card-bar {
-  height: 4px;
+/* ── Card image area ─────────────────────────────────────────────── */
+.card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
   background: var(--accent, #00B9CD);
   flex-shrink: 0;
 }
 
-.swatches {
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img {
+  transform: scale(1.06);
+}
+
+/* Accent-colour diagonal-stripe fallback when no image */
+.card-img-fallback {
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    var(--accent, #00B9CD);
+}
+
+/* Bottom gradient scrim so overlaid text stays readable */
+.card-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+  pointer-events: none;
+}
+
+/* Category pill — bottom-left over image */
+.img-category {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Yarn dot swatches — bottom-right over image */
+.img-swatches {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.7rem;
   display: flex;
-  gap: 5px;
-  padding: 0.9rem 1rem 0;
+  gap: -4px;
 }
 
-.swatch {
-  width: 14px;
-  height: 14px;
+.img-swatch {
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  border: 2px solid rgba(255,255,255,0.9);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
   flex-shrink: 0;
+  margin-left: -4px;
 }
 
+.img-swatch:first-child { margin-left: 0; }
+
+/* Photo count badge — top-right over image */
+.img-photo-count {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ── Card body ───────────────────────────────────────────────────── */
 .card-body {
-  padding: 0.75rem 1rem 0.75rem;
+  padding: 0.85rem 1rem 0.9rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
 .card-meta {
   display: flex;
+  align-items: center;
   gap: 0.4rem;
-  flex-wrap: wrap;
 }
 
-.badge-craft, .badge-cat {
-  font-size: 0.68rem;
-  font-weight: 600;
+.badge-craft {
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
+  padding: 0.18rem 0.5rem;
   border-radius: 999px;
 }
 
-.badge-craft.knitting { background: #E5F8FA; color: #00879A; }
+.badge-craft.knitting { background: #E5F8FA; color: #007A8A; }
 .badge-craft.crochet  { background: #FDE8F0; color: #B81050; }
-.badge-cat { background: #E5F8FA; color: #546E7A; }
+
+.badge-sizes {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #546E7A;
+  background: #E5F8FA;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+}
 
 .card-name {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
   color: #121212;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.25;
+  margin-top: 0.1rem;
 }
 
 .card-designer {
-  font-size: 0.75rem;
-  color: #546E7A;
+  font-size: 0.72rem;
+  color: #78909C;
 }
 
 .card-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #78909C;
-  line-height: 1.5;
-  margin-top: 0.25rem;
+  line-height: 1.55;
+  margin-top: 0.2rem;
   flex: 1;
+  /* clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
+  margin-top: 0.6rem;
+  padding-top: 0.55rem;
   border-top: 1px solid #E0F5F8;
 }
 
 .difficulty {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
 
 .dot {
@@ -340,36 +422,27 @@ function categoryLabel(c: Category): string {
   height: 7px;
   border-radius: 50%;
   background: #C8EEF3;
+  transition: background 0.2s;
 }
 
 .dot.filled { background: var(--accent, #00B9CD); }
 
 .diff-label {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: #546E7A;
   text-transform: capitalize;
-  margin-left: 0.15rem;
+  margin-left: 0.1rem;
 }
 
-.sizes-label {
-  font-size: 0.68rem;
-  color: #546E7A;
-  background: #E5F8FA;
-  padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-}
-
-.card-cta {
-  padding: 0.65rem 1rem;
-  border-top: 1px solid #E0F5F8;
-}
-
-.open-btn {
-  font-size: 0.78rem;
-  font-weight: 600;
+.open-link {
+  font-size: 0.72rem;
+  font-weight: 700;
   color: #00B9CD;
   letter-spacing: 0.01em;
+  transition: color 0.15s;
 }
+
+.card:hover .open-link { color: #007A8A; }
 
 /* ── Empty ───────────────────────────────────────────────────────── */
 .empty {

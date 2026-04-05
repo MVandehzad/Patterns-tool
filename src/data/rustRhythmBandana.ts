@@ -239,6 +239,12 @@ const rustRhythmBandana: Pattern = {
   ],
   hashtags: ['#AnnaHusemannxHobbii', '#hobbiirustandrhythm', '#hobbiidesign'],
   buyUrl: 'https://shop.hobbii.com/rust-rhythm-bandana',
+  coverImage: 'https://picsum.photos/seed/bandana-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/bandana-1/1200/800',
+    'https://picsum.photos/seed/bandana-2/1200/800',
+    'https://picsum.photos/seed/bandana-3/1200/800',
+  ],
   accentColor: '#C05A28',
   coverDescription: 'A bold triangular bandana scarf combining intarsia colourwork with a 4×2 garter stitch rib. Worked with yarn tripled for a soft, sculptural fabric. A playful exploration of colour placement in warm rust tones.',
 }

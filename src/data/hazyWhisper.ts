@@ -172,6 +172,13 @@ const hazyWhisper: Pattern = {
   ease: '5 cm / 2 inches positive ease',
   accentColor: '#8B6F5E',
   coverDescription: 'Top-down V-neck sweater in stockinette, worked with two strands held together for a dreamy drape.',
+  coverImage: 'https://picsum.photos/seed/hazy-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/hazy-1/1200/800',
+    'https://picsum.photos/seed/hazy-2/1200/800',
+    'https://picsum.photos/seed/hazy-3/1200/800',
+    'https://picsum.photos/seed/hazy-4/1200/800',
+  ],
 
   measurements: [
     {

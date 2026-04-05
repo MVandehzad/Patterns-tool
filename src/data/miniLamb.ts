@@ -194,6 +194,12 @@ const miniLamb: Pattern = {
   ],
   hashtags: ['#KhucCayxHobbii', '#HobbiiEaster', '#hobbiidesign'],
   buyUrl: 'https://shop.hobbii.com/mini-lamb-mini-easter-friends',
+  coverImage: 'https://picsum.photos/seed/minilamb-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/minilamb-1/1200/800',
+    'https://picsum.photos/seed/minilamb-2/1200/800',
+    'https://picsum.photos/seed/minilamb-3/1200/800',
+  ],
   accentColor: '#E8649C',
   coverDescription: 'A sweet 10 cm crochet lamb with a fluffy bouclé hat, tiny bobble arms and legs, and a companion tulip flower. Beginner-friendly spiral construction with very little sewing. Completable in under 2 hours.',
 }

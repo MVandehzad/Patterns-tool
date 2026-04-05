@@ -208,6 +208,12 @@ const cellaCardigan: Pattern = {
   ],
   hashtags: ['#jojoknitwearxhobbii', '#hobbiidesign', '#hobbiicella'],
   buyUrl: 'https://shop.hobbii.com/cella-cardigan',
+  coverImage: 'https://picsum.photos/seed/cardigan-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/cardigan-1/1200/800',
+    'https://picsum.photos/seed/cardigan-2/1200/800',
+    'https://picsum.photos/seed/cardigan-3/1200/800',
+  ],
   accentColor: '#8B5E8C',
   coverDescription: 'A top-down raglan cardigan in a luxurious alpaca blend. Features beautiful cable panels on both front pieces with the rest in stockinette stitch. Raised neck shaping via German short rows. 6 sizes.',
 }

@@ -12,6 +12,12 @@ const birdNest: Pattern = {
   sizes: ['One size'],
   accentColor: '#5BA3C4',
   coverDescription: 'An adorable crochet bird sitting in a hanging nest — worked in a continuous spiral with cotton yarn.',
+  coverImage: 'https://picsum.photos/seed/birdnest-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/birdnest-1/1200/800',
+    'https://picsum.photos/seed/birdnest-2/1200/800',
+    'https://picsum.photos/seed/birdnest-3/1200/800',
+  ],
 
   measurements: [
     {

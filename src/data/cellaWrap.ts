@@ -171,6 +171,12 @@ const cellaWrap: Pattern = {
   ],
   hashtags: ['#jojoknitwearxhobbii', '#hobbiidesign', '#hobbiicella'],
   buyUrl: 'https://shop.hobbii.com/cella-wrap',
+  coverImage: 'https://picsum.photos/seed/wrap-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/wrap-1/1200/800',
+    'https://picsum.photos/seed/wrap-2/1200/800',
+    'https://picsum.photos/seed/wrap-3/1200/800',
+  ],
   accentColor: '#4A8C7A',
   coverDescription: 'A hybrid shawl-sweater that wraps around the body like a cocoon, with ribbed sleeve tubes at each end. Features a cable-panelled body with i-cord edges in a soft alpaca blend. 3 sizes.',
 }

@@ -158,6 +158,12 @@ const buddySnowman: Pattern = {
   ],
   hashtags: ['#hobbiibuddythesnowman', '#hobbiidesign'],
   buyUrl: 'https://shop.hobbii.com/buddy-the-snowman',
+  coverImage: 'https://picsum.photos/seed/snowman-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/snowman-1/1200/800',
+    'https://picsum.photos/seed/snowman-2/1200/800',
+    'https://picsum.photos/seed/snowman-3/1200/800',
+  ],
   accentColor: '#5A8AC4',
   coverDescription: 'A cheerful 34 cm knitted snowman worked flat from base to hat tip. Features a striped garter scarf, ribbed pointed hat with fold-back brim, and carrot nose. Quick beginner project perfect for gifting.',
 }

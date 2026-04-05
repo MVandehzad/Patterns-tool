@@ -241,6 +241,13 @@ const copperCrest: Pattern = {
   ],
   hashtags: ['#NeringaRukexCOPENHAGENfibers', '#hobbii', '#COPENHAGENfibersCopperCrest'],
   buyUrl: 'https://shop.hobbii.com/copper-crest-sweater',
+  coverImage: 'https://picsum.photos/seed/coppercrest-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/coppercrest-1/1200/800',
+    'https://picsum.photos/seed/coppercrest-2/1200/800',
+    'https://picsum.photos/seed/coppercrest-3/1200/800',
+    'https://picsum.photos/seed/coppercrest-4/1200/800',
+  ],
   accentColor: '#B06A40',
   coverDescription: 'A fitted top-down raglan sweater worked entirely in a k2, p2 rib structure — no separate hem, cuff or neckline. The continuous rib creates a sleek, minimal silhouette perfect for layering. 8 sizes.',
 }

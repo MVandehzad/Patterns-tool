@@ -109,6 +109,10 @@ export interface Pattern {
   sizes: string[]
   ease?: string
   measurements: Measurement[]
+  /** Primary image shown on the library card */
+  coverImage?: string
+  /** Gallery images shown in the fullscreen viewer */
+  images?: string[]
   materials: {
     yarns: Yarn[]
     tools: Tool[]

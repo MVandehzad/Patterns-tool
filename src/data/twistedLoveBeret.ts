@@ -174,6 +174,12 @@ const twistedLoveBeret: Pattern = {
   ],
   hashtags: ['#KlaryBarryxHobbii', '#hobbiitwistedlove', '#HobbiiLove', '#hobbiidesign'],
   buyUrl: 'https://shop.hobbii.com/twisted-love-beret',
+  coverImage: 'https://picsum.photos/seed/beret-cover/800/600',
+  images: [
+    'https://picsum.photos/seed/beret-1/1200/800',
+    'https://picsum.photos/seed/beret-2/1200/800',
+    'https://picsum.photos/seed/beret-3/1200/800',
+  ],
   accentColor: '#7254A8',
   coverDescription: 'An advanced stranded colorwork beret with i-cord brim and cable details. Worked bottom-up in two contrasting colours — each a blend of Extra Fine Merino and Kid Silk — creating a graphic, textured design.',
 }

@@ -8,6 +8,7 @@ import SizeSelector from './SizeSelector.vue'
 import GaugeCard from './GaugeCard.vue'
 import AbbreviationsDrawer from './AbbreviationsDrawer.vue'
 import PatternInstructions from './PatternInstructions.vue'
+import PatternGallery from './PatternGallery.vue'
 
 const props = defineProps<{ pattern: Pattern }>()
 const emit = defineEmits<{ back: [] }>()
@@ -24,6 +25,7 @@ const overall = computed(() =>
 )
 
 const showAbbr = ref(false)
+const showGallery = ref(false)
 </script>
 
 <template>
@@ -134,6 +136,23 @@ const showAbbr = ref(false)
 
     </div>
 
+    <!-- ── Photos floating button (only when images exist) ───────── -->
+    <button
+      v-if="pattern.images?.length"
+      class="photo-fab"
+      @click="showGallery = true"
+      :title="`View ${pattern.images.length} photos`"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span class="photo-fab-count">{{ pattern.images.length }}</span>
+    </button>
+
     <!-- ── Abbreviations floating trigger ─────────────────────────── -->
     <button class="abbr-fab" @click="showAbbr = true" title="Abbreviations reference">
       <span class="abbr-fab-label">ABC</span>
@@ -143,6 +162,14 @@ const showAbbr = ref(false)
       :abbreviations="pattern.abbreviations"
       :open="showAbbr"
       @close="showAbbr = false"
+    />
+
+    <PatternGallery
+      v-if="pattern.images?.length"
+      :images="pattern.images"
+      :pattern-name="pattern.name"
+      :open="showGallery"
+      @close="showGallery = false"
     />
 
   </div>
@@ -375,6 +402,35 @@ const showAbbr = ref(false)
 
 .cta-btn:hover { background: #D21055; transform: translateY(-1px); }
 .cta-btn:active { transform: translateY(0); }
+
+/* ── Photos FAB ───────────────────────────────────────────────────── */
+.photo-fab {
+  position: fixed;
+  bottom: 5.25rem;
+  right: 1.5rem;
+  height: 48px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: #121212;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
+  transition: transform 0.15s, background 0.15s;
+  z-index: 30;
+  font-family: inherit;
+}
+
+.photo-fab:hover { background: #2a2a2a; transform: scale(1.04); }
+
+.photo-fab-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
 
 /* ── ABC FAB ──────────────────────────────────────────────────────── */
 .abbr-fab {
