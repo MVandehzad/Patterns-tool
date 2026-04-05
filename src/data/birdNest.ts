@@ -12,11 +12,12 @@ const birdNest: Pattern = {
   sizes: ['One size'],
   accentColor: '#5BA3C4',
   coverDescription: 'An adorable crochet bird sitting in a hanging nest — worked in a continuous spiral with cotton yarn.',
-  coverImage: 'https://picsum.photos/seed/birdnest-cover/800/600',
+  coverImage: 'https://hobbii.dk/cdn/shop/files/BirdNestA_ca0e88d4-b673-45d4-84a0-45d177a069fe.jpg?v=1774367413',
   images: [
-    'https://picsum.photos/seed/birdnest-1/1200/800',
-    'https://picsum.photos/seed/birdnest-2/1200/800',
-    'https://picsum.photos/seed/birdnest-3/1200/800',
+    'https://hobbii.dk/cdn/shop/files/BirdNestA_ca0e88d4-b673-45d4-84a0-45d177a069fe.jpg?v=1774367413',
+    'https://hobbii.dk/cdn/shop/files/BirdNestB_6b2a1763-073f-4650-8b6a-61785f7d541e.jpg?v=1774367413',
+    'https://hobbii.dk/cdn/shop/files/BirdNestC_74b6c062-e1f3-4189-80a6-703b989c3170.jpg?v=1774367413',
+    'https://hobbii.dk/cdn/shop/files/BirdNestD_24138447-41dc-41c9-bb0d-5970fa1f8d6d.jpg?v=1774367413',
   ],
 
   measurements: [
