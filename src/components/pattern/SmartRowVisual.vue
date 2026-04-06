@@ -2,22 +2,29 @@
 /**
  * SmartRowVisual — adaptive instruction visualizer.
  *
- * Chooses one of three display modes based on available data:
+ * Chooses one of four display modes based on available data:
  *
- *  count-bar   — proportional fill bar for rounds/rows with a known stitch count
- *                (crochet amigurumi, simple knitting rows). Shows delta vs previous.
+ *  anatomy     — dynamic proportional anatomy bar for construction rounds.
+ *                Requires pattern.constructionMeta (e.g. RaglanYokeMeta).
+ *                Computes exact section stitch counts at any round number
+ *                without manual per-round data entry. Backend-ready: the
+ *                same component works whether data comes from TS files or API.
  *
- *  technique   — pill-badge strip for garment rows/rounds where we can detect
- *                RS/WS, M1 increases, decreases, rib/cable stitch, and markers.
+ *  count-bar   — proportional fill bar for rounds/rows with a known stitch
+ *                count (crochet amigurumi, simple knitting rows). Shows delta.
  *
- *  sparkline   — connected count-milestone trail for 'step' instructions that
- *                embed multiple [X] counts in their text (e.g. Buddy the Snowman).
+ *  technique   — pill-badge strip for garment rows/rounds where RS/WS,
+ *                M1 increases, decreases, rib/cable stitch, and markers
+ *                are detectable from the instruction text.
  *
- *  (nothing)   — if nothing useful is detectable, the component renders nothing
- *                and the parent falls back to plain text only.
+ *  sparkline   — connected count-milestone trail for 'step' instructions
+ *                that embed multiple [X] counts in text (e.g. Buddy Snowman).
+ *
+ *  (nothing)   — if nothing useful is detectable, renders nothing and the
+ *                parent falls back to plain text only.
  */
 import { computed } from 'vue'
-import type { Instruction } from '@/types/pattern'
+import type { Instruction, ConstructionMeta, RaglanYokeMeta } from '@/types/pattern'
 import {
   extractFinalCount,
   extractAllCounts,
@@ -35,7 +42,80 @@ const props = defineProps<{
   prevCount?: number
   /** Maximum stitch count in this section — used to scale the count bar */
   maxCount?: number
+  /**
+   * Pattern-level construction metadata.
+   * When present and instruction has a parseable round number, anatomy mode
+   * is used instead of technique pills.
+   */
+  constructionMeta?: ConstructionMeta
+  /** Currently selected size index (0-based). Comes from the progress store. */
+  sizeIndex?: number
 }>()
+
+// ── Anatomy mode helpers ────────────────────────────────────────────
+/**
+ * Parse a round number from the instruction label or use the explicit override.
+ * "Round 5 (increase)" → 5, "Round 12" → 12
+ */
+const anatomyRoundNum = computed((): number | null => {
+  if (!props.constructionMeta) return null
+  if (props.instruction.anatomyRound != null) return props.instruction.anatomyRound
+  const m = props.instruction.label?.match(/\bround\s+(\d+)\b/i)
+  return m ? parseInt(m[1]) : null
+})
+
+/** Compute total stitches at round N for the current size */
+function totalAtRound(rn: number): number {
+  if (!props.constructionMeta || props.constructionMeta.type !== 'raglan') return 0
+  const meta = props.constructionMeta as RaglanYokeMeta
+  const sizeIdx = Math.max(0, props.sizeIndex ?? 0)
+  const elapsed = Math.ceil(rn / meta.increaseFrequency)
+  const bodyTotal = meta.sections.reduce((sum, _, i) => {
+    const base = meta.startCounts[sizeIdx]?.[i] ?? 0
+    return sum + base + elapsed * 2
+  }, 0)
+  return bodyTotal + meta.sections.length * meta.raglansPerJoint
+}
+
+interface AnatomySegment {
+  label: string
+  count: number
+  isRaglan?: boolean
+  color?: string
+}
+
+const anatomyBarSegments = computed((): AnatomySegment[] => {
+  if (!props.constructionMeta || props.constructionMeta.type !== 'raglan') return []
+  if (anatomyRoundNum.value == null) return []
+  const meta = props.constructionMeta as RaglanYokeMeta
+  const sizeIdx = Math.max(0, props.sizeIndex ?? 0)
+  const elapsed = Math.ceil(anatomyRoundNum.value / meta.increaseFrequency)
+
+  const items: AnatomySegment[] = []
+  for (let i = 0; i < meta.sections.length; i++) {
+    if (i > 0) {
+      items.push({ label: 'raglan', count: meta.raglansPerJoint, isRaglan: true })
+    }
+    const base = meta.startCounts[sizeIdx]?.[i] ?? 0
+    items.push({
+      label: meta.sections[i].label,
+      count: base + elapsed * 2,
+      color: meta.sections[i].colorHint,
+    })
+  }
+  return items
+})
+
+const anatomyTotalCount = computed((): number => {
+  const rn = anatomyRoundNum.value
+  return rn != null ? totalAtRound(rn) : 0
+})
+
+const anatomyDelta = computed((): number | null => {
+  const rn = anatomyRoundNum.value
+  if (rn == null || rn <= 0) return null
+  return totalAtRound(rn) - totalAtRound(rn - 1)
+})
 
 // ── Parsed data ────────────────────────────────────────────────────
 const stitchCount = computed(
@@ -56,7 +136,7 @@ const stitchType = computed(() => detectStitchType(props.instruction.text))
 const markers = computed(() => hasMarkers(props.instruction.text))
 
 // ── Mode selection ──────────────────────────────────────────────────
-type Mode = 'count-bar' | 'technique' | 'sparkline' | 'none'
+type Mode = 'anatomy' | 'count-bar' | 'technique' | 'sparkline' | 'none'
 
 const mode = computed((): Mode => {
   const type = props.instruction.type
@@ -66,6 +146,9 @@ const mode = computed((): Mode => {
 
   // Has segments → handled by RowVisualizer, skip here
   if (props.instruction.segments?.length) return 'none'
+
+  // Anatomy mode — dynamic construction bar (highest priority for round/row)
+  if ((type === 'round' || type === 'row') && anatomyRoundNum.value != null) return 'anatomy'
 
   // step with 2+ embedded milestones → sparkline (check before count-bar so
   // e.g. "Row 1 [16] → Row 3 [24] → Row 5 [32]" doesn't collapse to count-bar)
@@ -149,8 +232,46 @@ const pills = computed((): Pill[] => {
 </script>
 
 <template>
+  <!-- ── Anatomy bar ────────────────────────────────────────────────── -->
+  <div v-if="mode === 'anatomy'" class="vis-anatomy">
+    <div class="anatomy-wrap">
+      <div class="anatomy-bar">
+        <template v-for="(seg, i) in anatomyBarSegments" :key="i">
+          <!-- Raglan joint — thin dark divider -->
+          <div
+            v-if="seg.isRaglan"
+            class="anatomy-raglan"
+            :title="`Raglan: ${seg.count} sts`"
+          />
+          <!-- Body/sleeve section — proportional width -->
+          <div
+            v-else
+            class="anatomy-seg"
+            :style="{ flex: seg.count, background: seg.color ?? '#00B9CD' }"
+          >
+            <span class="anatomy-seg-label">{{ seg.label }}</span>
+            <span class="anatomy-seg-count">{{ seg.count }}</span>
+          </div>
+        </template>
+      </div>
+      <!-- Totals row -->
+      <div class="anatomy-meta">
+        <span class="anatomy-total">{{ anatomyTotalCount }} sts</span>
+        <span
+          v-if="anatomyDelta != null && anatomyDelta !== 0"
+          class="delta-badge"
+          :class="anatomyDelta > 0 ? 'delta-pos' : 'delta-neg'"
+        >{{ anatomyDelta > 0 ? '+' : '' }}{{ anatomyDelta }}</span>
+        <span
+          v-else-if="anatomyDelta === 0"
+          class="delta-badge delta-flat"
+        >no change</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Count bar ─────────────────────────────────────────────────── -->
-  <div v-if="mode === 'count-bar'" class="vis-row">
+  <div v-else-if="mode === 'count-bar'" class="vis-row">
     <div
       class="count-track"
       :style="{ background: trackColor }"
@@ -215,6 +336,92 @@ const pills = computed((): Pill[] => {
   margin: 0.3rem 0 0.1rem;
 }
 
+/* ── Anatomy bar ─────────────────────────────────────────────────── */
+.vis-anatomy {
+  margin: 0.4rem 0 0.2rem;
+}
+
+.anatomy-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.anatomy-bar {
+  display: flex;
+  height: 40px;
+  border-radius: 7px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Each named section (front, back, sleeve...) */
+.anatomy-seg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5px 4px;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.anatomy-seg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.18) 100%);
+  pointer-events: none;
+}
+
+.anatomy-seg-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+
+.anatomy-seg-count {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Raglan column — thin dark separator */
+.anatomy-raglan {
+  width: 5px;
+  flex-shrink: 0;
+  background: #1A2A3A;
+  opacity: 0.75;
+}
+
+/* Totals row below the bar */
+.anatomy-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.anatomy-total {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #546E7A;
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
 /* ── Count bar ───────────────────────────────────────────────────── */
 .count-track {
   flex: 1;
@@ -246,12 +453,14 @@ const pills = computed((): Pill[] => {
   white-space: nowrap;
 }
 
+/* ── Delta badge (shared) ────────────────────────────────────────── */
 .delta-badge {
   font-size: 0.6rem;
   font-weight: 800;
   padding: 0.1rem 0.3rem;
   border-radius: 999px;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .delta-pos  { color: #1A8A5A; background: #E6FAF2; }

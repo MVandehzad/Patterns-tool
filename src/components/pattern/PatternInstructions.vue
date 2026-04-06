@@ -227,6 +227,8 @@ function prevCountFor(section: PatternSection, idx: number): number | undefined 
                 :craft="pattern.craft"
                 :prevCount="prevCountFor(section, instrIdx)"
                 :maxCount="sectionMaxCount(section)"
+                :constructionMeta="pattern.constructionMeta"
+                :sizeIndex="store.getSelectedSizeIndex(pattern.id)"
                 @click.stop
               />
 

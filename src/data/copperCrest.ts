@@ -239,6 +239,44 @@ const copperCrest: Pattern = {
       ],
     },
   ],
+  /**
+   * Raglan yoke construction metadata.
+   *
+   * Round order from BOR: Right Sleeve → Front → Left Sleeve → Back
+   *
+   * Starting counts (before any increase rounds):
+   *   Sizes 1–4 (CO 80): sleeve=14, front/back=22  →  8 + 28 + 44 = 80 ✓
+   *   Sizes 5–8 (CO 96): sleeve=18, front/back=26  →  8 + 36 + 52 = 96 ✓
+   *
+   * Increases fire on every ODD round (rounds 1, 3, 5, …):
+   *   After round N: increasesElapsed = ceil(N/2)
+   *   Each section grows by +2 per increase round (M1R left + M1L right).
+   *
+   * Final yoke counts (size 1, 56 rounds → 28 increase rounds):
+   *   Sleeve: 14 + 28×2 = 70 ✓   Front/Back: 22 + 28×2 = 78 ✓
+   */
+  constructionMeta: {
+    type: 'raglan',
+    sections: [
+      { label: 'R Sleeve', colorHint: '#00B9CD' },
+      { label: 'Front',    colorHint: '#B06A40' },
+      { label: 'L Sleeve', colorHint: '#00B9CD' },
+      { label: 'Back',     colorHint: '#8A4E2A' },
+    ],
+    raglansPerJoint: 2,
+    // [sizeIndex 0-7][sectionIndex 0-3]
+    startCounts: [
+      [14, 22, 14, 22], // size 1
+      [14, 22, 14, 22], // size 2
+      [14, 22, 14, 22], // size 3
+      [14, 22, 14, 22], // size 4
+      [18, 26, 18, 26], // size 5
+      [18, 26, 18, 26], // size 6
+      [18, 26, 18, 26], // size 7
+      [18, 26, 18, 26], // size 8
+    ],
+    increaseFrequency: 2, // every other round (odd rounds only)
+  },
   hashtags: ['#NeringaRukexCOPENHAGENfibers', '#hobbii', '#COPENHAGENfibersCopperCrest'],
   buyUrl: 'https://shop.hobbii.com/copper-crest-sweater',
   coverImage: 'https://hobbii.dk/cdn/shop/files/20251126-DSC06997_0943ed00-a069-482a-bd4f-ac84ea139f59.jpg?v=1772542213',

@@ -1,5 +1,5 @@
 export type CraftType = 'knitting' | 'crochet'
-export type Category = 'sweater' | 'cardigan' | 'wrap' | 'beret' | 'bandana' | 'toy'
+export type Category = 'sweater' | 'cardigan' | 'vest' | 'wrap' | 'cowl' | 'beret' | 'bandana' | 'toy' | 'decoration'
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced'
 export type InstructionType = 'round' | 'row' | 'note' | 'tip' | 'step' | 'attention'
 
@@ -87,6 +87,11 @@ export interface Instruction {
   videoUrl?: string
   /** When present, renders a RowVisualizer in place of plain text */
   segments?: RowSegment[]
+  /**
+   * Override round number for anatomy bar rendering.
+   * When omitted SmartRowVisual parses the number from the label ("Round 5 (increase)" → 5).
+   */
+  anatomyRound?: number
 }
 
 export interface PatternSection {
@@ -95,6 +100,47 @@ export interface PatternSection {
   description?: string
   instructions: Instruction[]
 }
+
+// ── Construction metadata ─────────────────────────────────────────────────
+/**
+ * One named section of a raglan yoke (e.g. Front, Back, Left Sleeve).
+ * Sections are listed in round order starting from the BOR marker.
+ */
+export interface RaglanSection {
+  label: string
+  /** Optional hex color for the anatomy bar segment */
+  colorHint?: string
+}
+
+/**
+ * Describes the mathematical structure of a top-down raglan yoke so the
+ * frontend can dynamically compute stitch distributions at any round.
+ *
+ * Formula for section count after round N:
+ *   increasesElapsed = ceil(N / increaseFrequency)
+ *   count = startCounts[sizeIndex][sectionIndex] + increasesElapsed × 2
+ */
+export interface RaglanYokeMeta {
+  type: 'raglan'
+  /** Named sections in round order (e.g. [R Sleeve, Front, L Sleeve, Back]) */
+  sections: RaglanSection[]
+  /** Stitches in each raglan join column — usually 2 */
+  raglansPerJoint: number
+  /**
+   * Starting stitch counts before any increase rounds.
+   * Indexed as [sizeIndex][sectionIndex] — must match pattern.sizes length.
+   */
+  startCounts: number[][]
+  /**
+   * How often an increase round occurs.
+   * 1 = every round, 2 = every other round (odd rounds), 4 = every 4th, etc.
+   * Increases elapsed after round N = Math.ceil(N / increaseFrequency)
+   */
+  increaseFrequency: number
+}
+
+/** Union of all supported construction metadata types */
+export type ConstructionMeta = RaglanYokeMeta
 
 export interface Pattern {
   id: string
@@ -120,6 +166,13 @@ export interface Pattern {
   gauge?: Gauge
   abbreviations: Abbreviation[]
   sections: PatternSection[]
+  /**
+   * Structural metadata used by SmartRowVisual to dynamically compute and
+   * render stitch-anatomy bars for construction-heavy sections (yokes, bodies).
+   * When present, relevant round/row instructions display a proportional bar
+   * instead of technique pills — no manual segment data needed.
+   */
+  constructionMeta?: ConstructionMeta
   hashtags: string[]
   buyUrl: string
   /** Primary UI accent colour for this pattern */
